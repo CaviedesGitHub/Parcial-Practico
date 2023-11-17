@@ -17,7 +17,7 @@ describe('ProductoService', () => {
     for (let i = 0; i < 5; i++) {
       const producto: ProductoEntity = await repository.save({
         nombre: faker.company.name(),
-        precio: 10000,
+        precio: Math.floor(Math.random() * 10000) + 1,
         tipo: 'Perecedero',
       });
       productsList.push(producto);
