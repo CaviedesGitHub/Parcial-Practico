@@ -1,0 +1,635 @@
+{
+	"info": {
+		"_postman_id": "714465df-c41c-41fb-a062-57cb05613e0f",
+		"name": "Productos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20359132",
+		"_collection_link": "https://www.postman.com/lively-sunset-217782/workspace/calculadora/collection/20359132-714465df-c41c-41fb-a062-57cb05613e0f?action=share&source=collection_link&creator=20359132"
+	},
+	"item": [
+		{
+			"name": "Crear Producto Valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"restaurante_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear Producto Valido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"La gota fria\",\r\n    \"ciudad\": \"Bogota\",\r\n    \"estrellas\": 2,\r\n    \"fechaEstrellas\": \"21-12-2003\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/products",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"18461922-1cf2-4d90-8d58-cc287f23f932\",\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear Producto Invalido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Producto2\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Electronico\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear Producto Invalido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Producto2\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Electronico\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los productos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of restaurants > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los productos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\":\"8a5ee9d9-388d-4d35-98ec-373fb3e2b396\",\n        \"nombre\": \"Producto1\",\n        \"precio\": 5000,\n        \"tipo\": \"Perecedero\",\n        \"tiendas\": [\n            {\n                \"id\":\"f89cf607-38c3-4bb1-8c90-101743fdb064\",\n                \"nombre\":\"Tienda1\",\n                \"ciudad\": \"BOG\",\n                \"direccion\": \"Direccion Tienda1\"\n            },\n            {\n                \"id\":\"cb511426-cc85-44bc-a5a3-3be3d681ae44\",\n                \"nombre\":\"Tienda2\",\n                \"ciudad\": \"BUC\",\n                \"direccion\": \"Direccion Tienda2\"\n            }\n        ]\n    },\n    {\n        \"id\":\"4a3a47a6-b611-496d-bf5a-b3adf5d305fb\",\n        \"nombre\": \"Producto2\",\n        \"precio\": 100,\n        \"tipo\": \"No perecedero\",\n        \"tiendas\": [\n            {\n                \"id\":\"f89cf607-38c3-4bb1-8c90-101743fdb064\",\n                \"nombre\":\"Tienda1\",\n                \"ciudad\": \"RIO\",\n                \"direccion\": \"Direccion Tienda1\"\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\":\"8a5ee9d9-388d-4d35-98ec-373fb3e2b396\",\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\",\r\n    \"tiendas\": [\r\n        {\r\n            \"id\":\"f89cf607-38c3-4bb1-8c90-101743fdb064\",\r\n            \"nombre\":\"Tienda1\",\r\n            \"ciudad\": \"BOG\",\r\n            \"direccion\": \"Direccion Tienda1\"\r\n        },\r\n        {\r\n            \"id\":\"cb511426-cc85-44bc-a5a3-3be3d681ae44\",\r\n            \"nombre\":\"Tienda2\",\r\n            \"ciudad\": \"BUC\",\r\n            \"direccion\": \"Direccion Tienda2\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener producto NO existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{productoinvalido_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{productoinvalido_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener producto NO existente",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{productoinvalido_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{productoinvalido_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El producto con ese id no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un producto",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"ae18080c-e43f-4d22-b833-c0d699e60f47\",\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un producto que NO existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products/{{productoinvalido_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"{{productoinvalido_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un producto que NO existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/products/{{productoinvalido_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{productoinvalido_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El producto con ese id no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un producto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un producto que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/{{productoinvalido_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"{{productoinvalido_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un producto que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{productoinvalido_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{productoinvalido_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El producto con ese id no fue encontrado\"\r\n}"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,457 @@
+{
+	"info": {
+		"_postman_id": "a7a75ebf-7e11-468c-bcff-a8eb0867f48f",
+		"name": "Producto-Tienda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20359132",
+		"_collection_link": "https://www.postman.com/lively-sunset-217782/workspace/calculadora/collection/20359132-a7a75ebf-7e11-468c-bcff-a8eb0867f48f?action=share&source=collection_link&creator=20359132"
+	},
+	"item": [
+		{
+			"name": "Agregar una tienda a un producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una tienda a un producto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores",
+								"{{tienda_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"cb511426-cc85-44bc-a5a3-3be3d681ae44\",\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\",\r\n    \"tiendas\": [\r\n        {\r\n            \"id\": \"32706236-5157-47c8-97f8-8f1a9357e9ac\",\r\n            \"nombre\": \"Tienda1\",\r\n            \"ciudad\": \"BOG\",\r\n            \"direccion\": \"Direccion Tienda1\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar tienda que no existe a un producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{culturainvalida_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores",
+						"{{culturainvalida_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar tienda que no existe a un producto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{culturainvalida_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores",
+								"{{culturainvalida_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"La tienda con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener las tiendas de un producto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener las tiendas de un producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\":\"f89cf607-38c3-4bb1-8c90-101743fdb064\",\r\n        \"nombre\":\"Tienda1\",\r\n        \"ciudad\": \"BOG\",\r\n        \"direccion\": \"Direccion Tienda1\"\r\n    },\r\n    {\r\n        \"id\":\"cb511426-cc85-44bc-a5a3-3be3d681ae44\",\r\n        \"nombre\":\"Tienda2\",\r\n        \"ciudad\": \"BUC\",\r\n        \"direccion\": \"Direccion Tienda2\"\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una tienda de un producto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una tienda de un producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores",
+								"{{tienda_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\":\"cb511426-cc85-44bc-a5a3-3be3d681ae44\",\r\n    \"nombre\":\"Tienda2\",\r\n    \"ciudad\": \"BUC\",\r\n    \"direccion\": \"Direccion Tienda2\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una tienda de un producto que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/{{productoinvalido_id}}/stores/{{tienda_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{productoinvalido_id}}",
+						"stores",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una tienda de un producto que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{productoinvalido_id}}/stores/{{tienda_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{productoinvalido_id}}",
+								"stores",
+								"{{tienda_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El producto con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualiza las tiendas de un producto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\"id\":\"{{tienda_id}}\"},\r\n    {\"id\":\"{{tienda_id2}}\"}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualiza las tiendas de un producto",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\"id\":\"{{tienda_id}}\"},\r\n    {\"id\":\"{{tienda_id2}}\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\":\"8a5ee9d9-388d-4d35-98ec-373fb3e2b396\",\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\",\r\n    \"tiendas\": [\r\n        {\r\n            \"id\":\"f89cf607-38c3-4bb1-8c90-101743fdb064\",\r\n            \"nombre\":\"Tienda1\",\r\n            \"ciudad\": \"BOG\",\r\n            \"direccion\": \"Direccion Tienda1\"\r\n        },\r\n        {\r\n            \"id\":\"cb511426-cc85-44bc-a5a3-3be3d681ae44\",\r\n            \"nombre\":\"Tienda2\",\r\n            \"ciudad\": \"BUC\",\r\n            \"direccion\": \"Direccion Tienda2\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualiza las tiendas de un producto, una tienda inexistente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\"id\":\"{{tienda_id}}\"},\r\n    {\"id\":\"{{tiendainvalida_id}}\"}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualiza las tiendas de un producto, una tienda inexistente",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\"id\":\"{{tienda_id}}\"},\r\n    {\"id\":\"{{tiendainvalida_id}}\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{}\r\n   \"statusCode\": 404,\r\n   \"message\": \"La tienda con el id dado no fue encontrada\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una tienda de un producto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una tienda de un producto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores",
+								"{{tienda_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una tienda que no esta asociada a un producto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/culturas/{{cultura_id}}/restaurantes/{{restaurante_id2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_id}}",
+						"restaurantes",
+						"{{restaurante_id2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una tienda que no esta asociada a un producto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/{{producto_id}}/stores/{{tienda_id3}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"{{producto_id}}",
+								"stores",
+								"{{tienda_id3}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 412,\r\n   \"message\": \"La tienda con el id dado no esta asociado con este producto\"\r\n}"
+				}
+			]
+		}
+	]
+}
