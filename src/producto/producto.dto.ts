@@ -11,5 +11,5 @@ export class ProductoDto {
 
   @IsString()
   @IsNotEmpty()
-  readonly direccion: string;
+  readonly tipo: string;
 }
