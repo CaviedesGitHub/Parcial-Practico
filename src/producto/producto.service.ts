@@ -32,6 +32,12 @@ export class ProductoService {
   }
 
   async create(producto: ProductoEntity): Promise<ProductoEntity> {
+    if (producto.tipo !== 'Perecedero' && producto.tipo !== 'NO perecedero') {
+      throw new BusinessLogicException(
+        'The value for the type field must be Perecedero or No perecedero',
+        BusinessError.BAD_REQUEST,
+      );
+    }
     return await this.productoRepository.save(producto);
   }
 
@@ -43,6 +49,13 @@ export class ProductoService {
         'The product with the given id was not found',
         BusinessError.NOT_FOUND,
       );
+
+    if (producto.tipo !== 'Perecedero' && producto.tipo !== 'NO perecedero') {
+      throw new BusinessLogicException(
+        'The value for the type field must be Perecedero or No perecedero',
+        BusinessError.BAD_REQUEST,
+      );
+    }
 
     producto.id = id;
     return await this.productoRepository.save(producto);

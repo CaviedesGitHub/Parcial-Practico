@@ -15,7 +15,7 @@
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"restaurante_id\", data.id);\r",
+							"pm.globals.set(\"producto_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -30,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 1000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -55,7 +55,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"La gota fria\",\r\n    \"ciudad\": \"Bogota\",\r\n    \"estrellas\": 2,\r\n    \"fechaEstrellas\": \"21-12-2003\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Producto1\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,9 +63,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/products",
+							"raw": "{{baseUrl}}/products",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products"
@@ -91,6 +91,24 @@
 		},
 		{
 			"name": "Crear Producto Invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The value for the type field must be Perecedero or No perecedero\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -143,7 +161,7 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": null
+					"body": "{\r\n   \"statusCode\": 400,\r\n   \"message\": \"The value for the type field must be Perecedero or No perecedero\"\r\n}"
 				}
 			]
 		},
@@ -154,7 +172,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of restaurants > ' + 0, function () {\r",
+							"pm.test('Number of products > ' + 0, function () {\r",
 							"   var data = pm.response.json()\r",
 							"   pm.expect(data.length).to.greaterThan(0)\r",
 							"});\r",
@@ -187,9 +205,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/products",
+							"raw": "{{baseUrl}}/products",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products"
@@ -249,9 +267,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/products/{{producto_id}}",
+							"raw": "{{baseUrl}}/products/{{producto_id}}",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
@@ -289,7 +307,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The product with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -300,12 +318,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/restaurantes/{{productoinvalido_id}}",
+					"raw": "{{baseUrl}}/products/{{productoinvalido_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"restaurantes",
+						"products",
 						"{{productoinvalido_id}}"
 					]
 				}
@@ -317,9 +335,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/products/{{productoinvalido_id}}",
+							"raw": "{{baseUrl}}/products/{{productoinvalido_id}}",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
@@ -364,7 +382,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 5000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Nuevo nombre de Producto\",\r\n    \"precio\": 2000,\r\n    \"tipo\": \"Perecedero\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -372,9 +390,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/products/{{producto_id}}",
+					"raw": "{{baseUrl}}/products/{{producto_id}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"products",
@@ -405,9 +423,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/products/{{producto_id}}",
+							"raw": "{{baseUrl}}/products/{{producto_id}}",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
@@ -445,7 +463,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The product with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -491,9 +509,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/products/{{productoinvalido_id}}",
+							"raw": "{{baseUrl}}/products/{{productoinvalido_id}}",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
@@ -544,9 +562,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/products/{{producto_id}}",
+							"raw": "{{baseUrl}}/products/{{producto_id}}",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
@@ -576,7 +594,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The product with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -604,9 +622,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/products/{{productoinvalido_id}}",
+							"raw": "{{baseUrl}}/products/{{productoinvalido_id}}",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"products",

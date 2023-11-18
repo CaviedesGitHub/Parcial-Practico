@@ -15,7 +15,7 @@
 					"script": {
 						"exec": [
 							"data = pm.response.json()\r",
-							"pm.globals.set(\"cultura_id\", data.id);\r",
+							"pm.globals.set(\"tienda_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -30,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Tienda1\",\r\n    \"ciudad\": \"BOG\",\r\n    \"Direccion\": \"Direccion Tienda 1\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Tienda1\",\r\n    \"ciudad\": \"BOG\",\r\n    \"direccion\": \"Direccion Tienda 1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,6 +83,24 @@
 		},
 		{
 			"name": "Crear Tienda Invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The value for the city field is not valid. It must be 3 characters.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -126,7 +144,7 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n   \"statusCode\": 400,\r\n   \"message\": \"El valor para el campo ciudad no es valido.\"\r\n}"
+					"body": "{\r\n   \"statusCode\": 400,\r\n   \"message\": \"The value for the city field is not valid. It must be 3 characters.\"\r\n}"
 				}
 			]
 		},
@@ -137,7 +155,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of cultures > ' + 0, function () {\r",
+							"pm.test('Number of stores > ' + 0, function () {\r",
 							"   var data = pm.response.json()\r",
 							"   pm.expect(data.length).to.greaterThan(0)\r",
 							"});\r",
@@ -256,7 +274,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The culture with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The store with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -389,7 +407,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The culture with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The store with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -529,7 +547,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The culture with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The store with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"

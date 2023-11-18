@@ -32,6 +32,12 @@ export class TiendaService {
   }
 
   async create(tienda: TiendaEntity): Promise<TiendaEntity> {
+    if (tienda.ciudad.length !== 3) {
+      throw new BusinessLogicException(
+        'The value for the city field is not valid. It must be 3 characters.',
+        BusinessError.BAD_REQUEST,
+      );
+    }
     return await this.tiendaRepository.save(tienda);
   }
 
@@ -44,6 +50,13 @@ export class TiendaService {
         'The store with the given id was not found',
         BusinessError.NOT_FOUND,
       );
+
+    if (tienda.ciudad.length !== 3) {
+      throw new BusinessLogicException(
+        'The value for the city field is not valid. It must be 3 characters.',
+        BusinessError.BAD_REQUEST,
+      );
+    }
 
     tienda.id = id;
     return await this.tiendaRepository.save(tienda);
