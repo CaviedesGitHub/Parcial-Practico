@@ -32,7 +32,7 @@ export class ProductoService {
   }
 
   async create(producto: ProductoEntity): Promise<ProductoEntity> {
-    if (producto.tipo !== 'Perecedero' && producto.tipo !== 'NO perecedero') {
+    if (producto.tipo !== 'Perecedero' && producto.tipo !== 'No perecedero') {
       throw new BusinessLogicException(
         'The value for the type field must be Perecedero or No perecedero',
         BusinessError.BAD_REQUEST,
@@ -50,7 +50,7 @@ export class ProductoService {
         BusinessError.NOT_FOUND,
       );
 
-    if (producto.tipo !== 'Perecedero' && producto.tipo !== 'NO perecedero') {
+    if (producto.tipo !== 'Perecedero' && producto.tipo !== 'No perecedero') {
       throw new BusinessLogicException(
         'The value for the type field must be Perecedero or No perecedero',
         BusinessError.BAD_REQUEST,
